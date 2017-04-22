@@ -12,6 +12,7 @@ function toolbox(x, y) {
     this.keyboard = new keyboard();
     this.alive = true;
 
+    //check if in toolbox
     this.isWithin = function (x, y) {
         push();
         translate(this.myX, this.myY);
@@ -32,6 +33,7 @@ function toolbox(x, y) {
         return temp;
     }
 
+    //check if in keyboard
     this.isWithinKeyboard = function (x, y) {
         push();
         translate(this.myX, this.myY);
@@ -48,6 +50,7 @@ function toolbox(x, y) {
         return temp;
     }
 
+    //check if in taskbar
     this.isMove = function (x, y) {
         push();
         translate(this.myX, this.myY);
@@ -68,6 +71,7 @@ function toolbox(x, y) {
             y < - this.myHeight / 2 + 20);
     }
 
+    //update position of toolbox to point.  Also set the rotation of modules based on position
     this.updatePosition = function (x, y) {
         this.myX = x;
         this.myY = y;
@@ -98,6 +102,7 @@ function toolbox(x, y) {
         return Math.sqrt((y - this.myY) * (y - this.myY) + (x - this.myX) * (x - this.myX));
     }
 
+    //set function of the toolbox
     this.select = function (x, y) {
         push();
         translate(this.myX, this.myY);
@@ -133,6 +138,7 @@ function toolbox(x, y) {
         pop();
     }
 
+    //converts global coordinate to local coordinate and call keyboard's select
     this.selectKeyboard = function (x, y) {
         push();
         translate(this.myX, this.myY);
@@ -146,6 +152,7 @@ function toolbox(x, y) {
         return r;
     }
 
+    //converts global coordinate to local coordinate and call keyboard's highlight
     this.highlightKeyboard = function (x, y) {
         push();
         translate(this.myX, this.myY);
@@ -159,6 +166,7 @@ function toolbox(x, y) {
         return r;
     }
 
+    //rotates to r and move toward point
     this.towardTarget = function (x, y, r) {
         var tempx;
         var tempy;
@@ -181,6 +189,7 @@ function toolbox(x, y) {
         this.updatePosition(this.myX + tempx, this.myY + tempy);
     }
 
+    //set the focus of the toolbox to the module and changes focus accordingly
     this.toggleFocus = function (m) {
         if (!this.alive)
             return;
@@ -202,6 +211,7 @@ function toolbox(x, y) {
         dbg("toolbox focus: " + this.focus);
     }
 
+    //cancels the focus on the module
     this.defocus = function () {
         if (this.focus != null) {
             this.focus.toggleFocus(false);
@@ -209,6 +219,7 @@ function toolbox(x, y) {
         }
     }
 
+    //remove the current toolbox and defocus current focus
     this.removeToolbox = function () {
         dbg("RemoveToolbox");
         var freshToolbox = new Array();

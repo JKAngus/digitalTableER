@@ -10,6 +10,7 @@ function touchAnalyse() {
             er_cursors[i].myPurpose != "dragToolbox" &&
             er_cursors[i].myPurpose != "attractToolbox" &&
             er_cursors[i].myPurpose != "createToolbox") {
+            //cursor on toolbox's taskbar
             if (er_cursors[i].myObject.isMove(er_cursors[i].myX, er_cursors[i].myY)) {
                 er_cursors[i].myPurpose = "dragToolbox";
             } else {
@@ -68,7 +69,7 @@ function touchAnalyse() {
             }
             //dbg("count =" + count);
             if (count == 3) {
-
+                //create new toolbox with 3 fingers
                 dbg("Create new toolbox");
                 for (var j = 0; j < createToolboxCursor.length; ++j) {
                     createToolboxCursor[j].myPurpose = "createToolbox";
@@ -81,6 +82,7 @@ function touchAnalyse() {
                 }
             }
             if (count == 2 && createToolboxCursor[0].myToolbox != null && createToolboxCursor[1].myToolbox != null) {
+                //attract toolbox with 2 fingers
                 dbg("Attract toolbox");
                 for (var j = 0; j < createToolboxCursor.length; ++j) {
                     createToolboxCursor[j].myPurpose = "attractToolbox";
@@ -99,6 +101,7 @@ function removeTouch(id) {
             freshCursors.push(er_cursors[i]);
         }
         else {
+            //create temporary cursor to store information
             var temptime = er_cursors[i].myTime;
             var tempx = er_cursors[i].myX;
             var tempy = er_cursors[i].myY;

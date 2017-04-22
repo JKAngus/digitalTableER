@@ -50,9 +50,11 @@ Cursor.prototype.render = function () {
         */
 }
 
+// calls when new touches are added
 function touchAdd(id, x, y) {
     var newCursor = new Cursor(id, x, y, Date.now());
 
+    //find nearest toolbox and set in cursor
     var closestToolbox = null;
     for (var i = 0; i < toolboxes.length; i++) {
         if (closestToolbox == null || toolboxes[i].distanceTo(x, y) < closestToolbox.distanceTo(x, y)) {
@@ -64,7 +66,9 @@ function touchAdd(id, x, y) {
         newCursor.myPurpose = closestToolbox.function;
     }
 
+    //check and set if cursor is in module
     newCursor.myObject = inModules(x, y);
+    //check and set if cursor is in toolbox, overrides module
     if (inToolboxes(x, y) != null) {
         for (var i = 0; i < toolboxes.length; i++) {
             if (toolboxes[i].isWithin(x, y) || toolboxes[i].isWithinKeyboard(x, y)) {
@@ -78,6 +82,7 @@ function touchAdd(id, x, y) {
     er_cursors.push(newCursor);
 }
 
+//update cursor position
 function touchUpdate(id, x, y) {
     for (var i = 0; i < er_cursors.length; i++) {
         if (er_cursors[i].myId == id) {
@@ -87,6 +92,7 @@ function touchUpdate(id, x, y) {
     }
 }
 
+//remove cursor
 function touchRemove(id) {
     removeTouch(id);
 }

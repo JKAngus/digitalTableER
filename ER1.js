@@ -29,6 +29,7 @@ function draw() {
     background(255);
     touchAnalyse();
 
+    //Draw working zone
     for (var a = 0; a < toolboxes.length; a++) {
         //var a = 0;
         for (var b = 0; b < toolboxes.length; b++) {
